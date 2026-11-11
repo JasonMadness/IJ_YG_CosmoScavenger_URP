@@ -1,41 +1,55 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    private PlayerControls playerControls;
-    private Vector2 moveInput;
+    [SerializeField] private float _moveSpeed = 5f;
+
+    private PlayerControls _playerControls;
+    private Vector2 _moveInput;
+    private Vector2 _moveDirection;
+
+    public event Action<Vector2> MoveDirectionChanged;  
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        _playerControls = new PlayerControls();
     }
 
     private void OnEnable()
     {
-        playerControls.Player.Enable();
+        _playerControls.Player.Enable();
         
-        playerControls.Player.Move.performed += OnMove;
-        playerControls.Player.Move.canceled += OnMove;
+        _playerControls.Player.Move.performed += OnMove;
+        _playerControls.Player.Move.canceled += OnMove;
     }
 
     private void OnDisable()
     {
-        playerControls.Player.Disable();
+        _playerControls.Player.Disable();
         
-        playerControls.Player.Move.performed -= OnMove;
-        playerControls.Player.Move.canceled -= OnMove;
+        _playerControls.Player.Move.performed -= OnMove;
+        _playerControls.Player.Move.canceled -= OnMove;
     }
 
     private void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        _moveInput = context.ReadValue<Vector2>();
     }
 
     private void Update()
     {
-        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
-        transform.Translate(movement * (moveSpeed * Time.deltaTime));
+        Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y);
+
+        Vector2 currentDirection = new Vector2(movement.x, movement.z);
+
+        if (currentDirection != _moveDirection)
+        {
+            _moveDirection = currentDirection;
+            MoveDirectionChanged?.Invoke(_moveDirection);
+        }
+
+        transform.Translate(movement * (_moveSpeed * Time.deltaTime));
     }
 }
