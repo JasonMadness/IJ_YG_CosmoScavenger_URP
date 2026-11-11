@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerRotator : MonoBehaviour
 {
+    [SerializeField] private Transform _model;
     [SerializeField] private float rotationSpeed = 720f;
 
     private Vector3 _lookDirection;
@@ -15,8 +16,8 @@ public class PlayerRotator : MonoBehaviour
     {
         Quaternion targetRotation = Quaternion.LookRotation(_lookDirection, Vector3.up);
 
-        transform.rotation = Quaternion.RotateTowards(
-            transform.rotation,
+        _model.transform.rotation = Quaternion.RotateTowards(
+            _model.transform.rotation,
             targetRotation,
             rotationSpeed * Time.deltaTime
         );
