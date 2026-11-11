@@ -2,40 +2,23 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int MoveXHash = Animator.StringToHash("MoveX");
+    private static readonly int MoveYHash = Animator.StringToHash("MoveY");
+
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _model;
     [SerializeField] private PlayerMover _mover;
+    [SerializeField] private float _dampTime = 0.1f;
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (_animator == null || _model == null || _mover == null) 
-            throw new System.NullReferenceException("One or more required references are not assigned in the PlayerAnimation script.");
+        Vector2 moveDirection2D = _mover.MoveDirection;
+        Vector3 moveDirection3D = new Vector3(moveDirection2D.x, 0f, moveDirection2D.y);
+        Vector3 localDirection = _model.InverseTransformDirection(moveDirection3D);
 
-        Vector2 moveDir2D = _mover.MoveDirection;
-        bool isMoving = moveDir2D.sqrMagnitude > 0.0001f;
-
-        _animator.SetFloat("Speed", isMoving ? 1f : 0f);
-
-        if (isMoving == false)
-        {
-            _animator.SetFloat("MoveX", 0f);
-            _animator.SetFloat("MoveY", 0f);
-            return;
-        }
-
-        Vector3 lookDir = _model.forward;
-        lookDir.y = 0f;
-        lookDir.Normalize();
-
-        Vector3 moveDir3D = new Vector3(moveDir2D.x, 0f, moveDir2D.y);
-
-        float angle = Vector3.SignedAngle(lookDir, moveDir3D, Vector3.up);
-        float rad = angle * Mathf.Deg2Rad;
-
-        float moveX = Mathf.Sin(rad);
-        float moveY = Mathf.Cos(rad);
-
-        _animator.SetFloat("MoveX", moveX);
-        _animator.SetFloat("MoveY", moveY);
+        _animator.SetFloat(SpeedHash, _mover.MoveMagnitude, _dampTime, Time.deltaTime);
+        _animator.SetFloat(MoveXHash, localDirection.x, _dampTime, Time.deltaTime);
+        _animator.SetFloat(MoveYHash, localDirection.z, _dampTime, Time.deltaTime);
     }
 }
