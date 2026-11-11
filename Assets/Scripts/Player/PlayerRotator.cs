@@ -14,6 +14,9 @@ public class PlayerRotator : MonoBehaviour
 
     private void Update()
     {
+        if (_lookDirection.sqrMagnitude < 0.0001f) 
+            return;
+
         Quaternion targetRotation = Quaternion.LookRotation(_lookDirection, Vector3.up);
 
         _model.transform.rotation = Quaternion.RotateTowards(
