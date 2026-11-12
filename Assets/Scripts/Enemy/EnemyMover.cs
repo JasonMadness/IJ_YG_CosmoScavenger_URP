@@ -20,15 +20,17 @@ public class EnemyMover : MonoBehaviour
 
     private void Update()
     {
-        if (_target != null)
-        {
-            Vector3 direction = (_target.transform.position - transform.position).normalized;
+        if (_target == null)
+            return;
 
-            if (Vector3.Distance(transform.position, _target.transform.position) > _reachDistance)
-                transform.position += direction * _speed * Time.deltaTime;
+        Vector3 targetPosition = _target.transform.position;
+        Vector3 flatTarget = new Vector3(targetPosition.x, _positionY, targetPosition.z);
+        Vector3 toTarget = flatTarget - transform.position;
 
-            transform.position = new Vector3(transform.position.x, _positionY, transform.position.z);
-            transform.LookAt(_target.transform.position + Vector3.up * _positionY);
-        }
+        if (toTarget.sqrMagnitude > _reachDistance * _reachDistance)
+            transform.position += toTarget.normalized * (_speed * Time.deltaTime);
+
+        transform.position = new Vector3(transform.position.x, _positionY, transform.position.z);
+        transform.LookAt(flatTarget);
     }
 }
