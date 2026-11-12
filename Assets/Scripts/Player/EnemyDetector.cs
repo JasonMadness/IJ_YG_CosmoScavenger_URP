@@ -30,6 +30,9 @@ public class EnemyDetector : MonoBehaviour
             if (_buffer[i].TryGetComponent(out Enemy enemy) == false)
                 continue;
 
+            if (enemy.IsTargetable == false)
+                continue;
+
             float sqrDistance = (enemy.transform.position - transform.position).sqrMagnitude;
 
             if (sqrDistance < closestDistance)
