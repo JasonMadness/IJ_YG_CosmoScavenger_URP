@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
@@ -8,9 +9,8 @@ public class EnemyDetector : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayer;
 
     private readonly Collider[] _buffer = new Collider[MaxColliders];
-    private Enemy _closestEnemy;
 
-    public Enemy ClosestEnemy => _closestEnemy;
+    public event Action<Enemy> ClosestEnemyDetected;
 
     private void Update()
     {
@@ -23,7 +23,7 @@ public class EnemyDetector : MonoBehaviour
             transform.position, _radius, _buffer, _enemyLayer);
 
         float closestDistance = Mathf.Infinity;
-        _closestEnemy = null;
+        Enemy closestEnemy = null;
 
         for (int i = 0; i < count; i++)
         {
@@ -35,9 +35,11 @@ public class EnemyDetector : MonoBehaviour
             if (sqrDistance < closestDistance)
             {
                 closestDistance = sqrDistance;
-                _closestEnemy = enemy;
+                closestEnemy = enemy;
             }
         }
+
+        ClosestEnemyDetected?.Invoke(closestEnemy);
     }
 
     private void OnDrawGizmosSelected()

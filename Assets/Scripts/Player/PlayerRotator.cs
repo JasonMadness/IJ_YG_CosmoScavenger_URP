@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerRotator : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerRotator : MonoBehaviour
     [SerializeField] private Transform _model;
     [SerializeField] private float _rotationSpeed = 720f;
 
+    private Enemy _closestEnemy;
     private Vector3 _moveDirection;
 
     public void OnMoveDirectionChanged(Vector2 direction)
@@ -15,13 +17,18 @@ public class PlayerRotator : MonoBehaviour
         _moveDirection = new Vector3(direction.x, 0f, direction.y);
     }
 
+    public void OnEnemyDetected(Enemy enemy)
+    {
+        _closestEnemy = enemy;
+    }
+
     private void Update()
     {
         Vector3 lookDirection;
 
-        if (_enemyDetector.ClosestEnemy != null)
+        if (_closestEnemy != null)
         {
-            lookDirection = _enemyDetector.ClosestEnemy.transform.position - transform.position;
+            lookDirection = _closestEnemy.transform.position - transform.position;
             lookDirection.y = 0f;
         }
         else
