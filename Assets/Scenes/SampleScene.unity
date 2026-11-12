@@ -1291,6 +1291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMover: {fileID: 1672365937}
   _playerRotator: {fileID: 1672365945}
+  _playerAnimation: {fileID: 1672365946}
+  _enemyDetector: {fileID: 1672365947}
 --- !u!114 &1672365945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,7 +1321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2099819002}
-  _model: {fileID: 1672365941}
   _mover: {fileID: 1672365937}
   _dampTime: 0.1
 --- !u!114 &1672365947
