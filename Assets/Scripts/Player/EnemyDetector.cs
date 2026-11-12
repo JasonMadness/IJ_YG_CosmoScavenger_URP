@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
+    private const int MaxColliders = 32;
+
     [SerializeField] private float _radius = 5f;
     [SerializeField] private LayerMask _enemyLayer;
 
+    private readonly Collider[] _buffer = new Collider[MaxColliders];
     private Enemy _closestEnemy;
 
     public Enemy ClosestEnemy => _closestEnemy;
@@ -16,28 +19,28 @@ public class EnemyDetector : MonoBehaviour
 
     public void DetectClosestEnemy()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _radius, _enemyLayer);
+        int count = Physics.OverlapSphereNonAlloc(
+            transform.position, _radius, _buffer, _enemyLayer);
+
         float closestDistance = Mathf.Infinity;
         _closestEnemy = null;
 
-        foreach (Collider collider in colliders)
+        for (int i = 0; i < count; i++)
         {
-            Enemy enemy = collider.GetComponent<Enemy>();
+            if (_buffer[i].TryGetComponent(out Enemy enemy) == false)
+                continue;
 
-            if (enemy != null)
+            float sqrDistance = (enemy.transform.position - transform.position).sqrMagnitude;
+
+            if (sqrDistance < closestDistance)
             {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    _closestEnemy = enemy;
-                }
+                closestDistance = sqrDistance;
+                _closestEnemy = enemy;
             }
         }
     }
 
-    public void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _radius);
