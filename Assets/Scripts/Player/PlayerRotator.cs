@@ -8,36 +8,34 @@ public class PlayerRotator : MonoBehaviour
     [SerializeField] private Transform _model;
     [SerializeField] private float _rotationSpeed = 720f;
 
-    private Vector3 _lookDirection;
     private Vector3 _moveDirection;
-    private bool _enemyInSight;
 
     public void OnMoveDirectionChanged(Vector2 direction)
     {
-        if (direction.sqrMagnitude < DirectionEpsilonSqr)
-            return;
-
         _moveDirection = new Vector3(direction.x, 0f, direction.y);
     }
 
     private void Update()
     {
-        _enemyInSight = _enemyDetector.ClosestEnemy != null;
+        Vector3 lookDirection;
 
-        if (_enemyInSight)
+        if (_enemyDetector.ClosestEnemy != null)
         {
-            _lookDirection = _enemyDetector.ClosestEnemy.transform.position - transform.position;
-            _lookDirection.y = 0f;
+            lookDirection = _enemyDetector.ClosestEnemy.transform.position - transform.position;
+            lookDirection.y = 0f;
         }
         else
         {
             if (_moveDirection.sqrMagnitude < DirectionEpsilonSqr)
                 return;
 
-            _lookDirection = _moveDirection;            
+            lookDirection = _moveDirection;
         }
 
-        Quaternion targetRotation = Quaternion.LookRotation(_lookDirection, Vector3.up);
+        if (lookDirection.sqrMagnitude < DirectionEpsilonSqr)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
 
         _model.rotation = Quaternion.RotateTowards(
             _model.rotation,
