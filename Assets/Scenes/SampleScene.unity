@@ -763,6 +763,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 176286787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &863354275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863354276}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &863354276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863354275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1672365941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190982375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1139,7 @@ GameObject:
   - component: {fileID: 1672365937}
   - component: {fileID: 1672365945}
   - component: {fileID: 1672365946}
+  - component: {fileID: 1672365947}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1215,6 +1247,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1936290928}
+  - {fileID: 863354276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1672365943
@@ -1270,8 +1303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7e050efcd4f584ab8ac12b89053634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyDetector: {fileID: 1672365947}
   _model: {fileID: 1936290928}
-  rotationSpeed: 720
+  _rotationSpeed: 720
 --- !u!114 &1672365946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,6 +1321,23 @@ MonoBehaviour:
   _animator: {fileID: 2099819002}
   _model: {fileID: 1672365941}
   _mover: {fileID: 1672365937}
+  _dampTime: 0.1
+--- !u!114 &1672365947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672365936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792d87383617b0448d739db8f3a3e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 5
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1687708859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1582,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844001071346471038, guid: e7c51fde6fd220c4dbe35ff2fb31aead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
