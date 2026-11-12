@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Weapon _weapon;
+    [SerializeField] private Transform _hand;
+
+    private Enemy _target;
+
+    public void OnEnemyDetected(Enemy enemy)
     {
-        
+        _target = enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (_target == null)
+            return;
+        if (_target.IsTargetable == false)
+            return;
+
+        _weapon.Shoot();
     }
 }
