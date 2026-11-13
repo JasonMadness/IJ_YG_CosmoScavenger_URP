@@ -1,0 +1,1076 @@
+﻿{
+    "read_console":  {
+                         "additionalProperties":  false,
+                         "properties":  {
+                                            "action":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "enum":  [
+                                                                                          "get",
+                                                                                          "clear"
+                                                                                      ],
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "types":  {
+                                                          "anyOf":  [
+                                                                        {
+                                                                            "items":  {
+                                                                                          "enum":  [
+                                                                                                       "error",
+                                                                                                       "warning",
+                                                                                                       "log",
+                                                                                                       "all"
+                                                                                                   ],
+                                                                                          "type":  "string"
+                                                                                      },
+                                                                            "type":  "array"
+                                                                        },
+                                                                        {
+                                                                            "type":  "string"
+                                                                        },
+                                                                        {
+                                                                            "type":  "null"
+                                                                        }
+                                                                    ],
+                                                          "default":  null
+                                                      },
+                                            "count":  {
+                                                          "anyOf":  [
+                                                                        {
+                                                                            "type":  "integer"
+                                                                        },
+                                                                        {
+                                                                            "type":  "string"
+                                                                        },
+                                                                        {
+                                                                            "type":  "null"
+                                                                        }
+                                                                    ],
+                                                          "default":  null
+                                                      },
+                                            "filter_text":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                            "page_size":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "integer"
+                                                                            },
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                            "cursor":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "type":  "integer"
+                                                                         },
+                                                                         {
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "format":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "enum":  [
+                                                                                          "plain",
+                                                                                          "detailed",
+                                                                                          "json"
+                                                                                      ],
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "include_stacktrace":  {
+                                                                       "anyOf":  [
+                                                                                     {
+                                                                                         "type":  "boolean"
+                                                                                     },
+                                                                                     {
+                                                                                         "type":  "string"
+                                                                                     },
+                                                                                     {
+                                                                                         "type":  "null"
+                                                                                     }
+                                                                                 ],
+                                                                       "default":  null
+                                                                   }
+                                        },
+                         "type":  "object"
+                     },
+    "manage_gameobject":  {
+                              "additionalProperties":  false,
+                              "properties":  {
+                                                 "action":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "enum":  [
+                                                                                               "create",
+                                                                                               "modify",
+                                                                                               "delete",
+                                                                                               "duplicate",
+                                                                                               "move_relative",
+                                                                                               "look_at"
+                                                                                           ],
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                                 "target":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                                 "search_method":  {
+                                                                       "anyOf":  [
+                                                                                     {
+                                                                                         "enum":  [
+                                                                                                      "by_id",
+                                                                                                      "by_name",
+                                                                                                      "by_path",
+                                                                                                      "by_tag",
+                                                                                                      "by_layer",
+                                                                                                      "by_component"
+                                                                                                  ],
+                                                                                         "type":  "string"
+                                                                                     },
+                                                                                     {
+                                                                                         "type":  "null"
+                                                                                     }
+                                                                                 ],
+                                                                       "default":  null
+                                                                   },
+                                                 "name":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                                 "tag":  {
+                                                             "anyOf":  [
+                                                                           {
+                                                                               "type":  "string"
+                                                                           },
+                                                                           {
+                                                                               "type":  "null"
+                                                                           }
+                                                                       ],
+                                                             "default":  null
+                                                         },
+                                                 "parent":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                                 "position":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "items":  {
+                                                                                                  "type":  "number"
+                                                                                              },
+                                                                                    "type":  "array"
+                                                                                },
+                                                                                {
+                                                                                    "additionalProperties":  {
+                                                                                                                 "type":  "number"
+                                                                                                             },
+                                                                                    "type":  "object"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null
+                                                              },
+                                                 "rotation":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "items":  {
+                                                                                                  "type":  "number"
+                                                                                              },
+                                                                                    "type":  "array"
+                                                                                },
+                                                                                {
+                                                                                    "additionalProperties":  {
+                                                                                                                 "type":  "number"
+                                                                                                             },
+                                                                                    "type":  "object"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null
+                                                              },
+                                                 "scale":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "items":  {
+                                                                                               "type":  "number"
+                                                                                           },
+                                                                                 "type":  "array"
+                                                                             },
+                                                                             {
+                                                                                 "additionalProperties":  {
+                                                                                                              "type":  "number"
+                                                                                                          },
+                                                                                 "type":  "object"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null
+                                                           },
+                                                 "components_to_add":  {
+                                                                           "anyOf":  [
+                                                                                         {
+                                                                                             "items":  {
+                                                                                                           "anyOf":  [
+                                                                                                                         {
+                                                                                                                             "type":  "string"
+                                                                                                                         },
+                                                                                                                         {
+                                                                                                                             "additionalProperties":  true,
+                                                                                                                             "type":  "object"
+                                                                                                                         }
+                                                                                                                     ]
+                                                                                                       },
+                                                                                             "type":  "array"
+                                                                                         },
+                                                                                         {
+                                                                                             "additionalProperties":  true,
+                                                                                             "type":  "object"
+                                                                                         },
+                                                                                         {
+                                                                                             "type":  "string"
+                                                                                         },
+                                                                                         {
+                                                                                             "type":  "null"
+                                                                                         }
+                                                                                     ],
+                                                                           "default":  null
+                                                                       },
+                                                 "primitive_type":  {
+                                                                        "anyOf":  [
+                                                                                      {
+                                                                                          "type":  "string"
+                                                                                      },
+                                                                                      {
+                                                                                          "type":  "null"
+                                                                                      }
+                                                                                  ],
+                                                                        "default":  null
+                                                                    },
+                                                 "save_as_prefab":  {
+                                                                        "anyOf":  [
+                                                                                      {
+                                                                                          "type":  "boolean"
+                                                                                      },
+                                                                                      {
+                                                                                          "type":  "string"
+                                                                                      },
+                                                                                      {
+                                                                                          "type":  "null"
+                                                                                      }
+                                                                                  ],
+                                                                        "default":  null
+                                                                    },
+                                                 "prefab_path":  {
+                                                                     "anyOf":  [
+                                                                                   {
+                                                                                       "type":  "string"
+                                                                                   },
+                                                                                   {
+                                                                                       "type":  "null"
+                                                                                   }
+                                                                               ],
+                                                                     "default":  null
+                                                                 },
+                                                 "prefab_folder":  {
+                                                                       "anyOf":  [
+                                                                                     {
+                                                                                         "type":  "string"
+                                                                                     },
+                                                                                     {
+                                                                                         "type":  "null"
+                                                                                     }
+                                                                                 ],
+                                                                       "default":  null
+                                                                   },
+                                                 "set_active":  {
+                                                                    "anyOf":  [
+                                                                                  {
+                                                                                      "type":  "boolean"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "null"
+                                                                                  }
+                                                                              ],
+                                                                    "default":  null
+                                                                },
+                                                 "layer":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null
+                                                           },
+                                                 "is_static":  {
+                                                                   "anyOf":  [
+                                                                                 {
+                                                                                     "type":  "boolean"
+                                                                                 },
+                                                                                 {
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "type":  "null"
+                                                                                 }
+                                                                             ],
+                                                                   "default":  null
+                                                               },
+                                                 "components_to_remove":  {
+                                                                              "anyOf":  [
+                                                                                            {
+                                                                                                "items":  {
+                                                                                                              "type":  "string"
+                                                                                                          },
+                                                                                                "type":  "array"
+                                                                                            },
+                                                                                            {
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                                            {
+                                                                                                "type":  "null"
+                                                                                            }
+                                                                                        ],
+                                                                              "default":  null
+                                                                          },
+                                                 "component_properties":  {
+                                                                              "anyOf":  [
+                                                                                            {
+                                                                                                "additionalProperties":  {
+                                                                                                                             "additionalProperties":  true,
+                                                                                                                             "type":  "object"
+                                                                                                                         },
+                                                                                                "type":  "object"
+                                                                                            },
+                                                                                            {
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                                            {
+                                                                                                "type":  "null"
+                                                                                            }
+                                                                                        ],
+                                                                              "default":  null
+                                                                          },
+                                                 "new_name":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null
+                                                              },
+                                                 "offset":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "items":  {
+                                                                                                "type":  "number"
+                                                                                            },
+                                                                                  "type":  "array"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                                 "reference_object":  {
+                                                                          "anyOf":  [
+                                                                                        {
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "null"
+                                                                                        }
+                                                                                    ],
+                                                                          "default":  null
+                                                                      },
+                                                 "direction":  {
+                                                                   "anyOf":  [
+                                                                                 {
+                                                                                     "enum":  [
+                                                                                                  "left",
+                                                                                                  "right",
+                                                                                                  "up",
+                                                                                                  "down",
+                                                                                                  "forward",
+                                                                                                  "back",
+                                                                                                  "front",
+                                                                                                  "backward",
+                                                                                                  "behind"
+                                                                                              ],
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "type":  "null"
+                                                                                 }
+                                                                             ],
+                                                                   "default":  null
+                                                               },
+                                                 "distance":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "type":  "number"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null
+                                                              },
+                                                 "world_space":  {
+                                                                     "anyOf":  [
+                                                                                   {
+                                                                                       "type":  "boolean"
+                                                                                   },
+                                                                                   {
+                                                                                       "type":  "string"
+                                                                                   },
+                                                                                   {
+                                                                                       "type":  "null"
+                                                                                   }
+                                                                               ],
+                                                                     "default":  null
+                                                                 },
+                                                 "look_at_target":  {
+                                                                        "anyOf":  [
+                                                                                      {
+                                                                                          "items":  {
+                                                                                                        "type":  "number"
+                                                                                                    },
+                                                                                          "type":  "array"
+                                                                                      },
+                                                                                      {
+                                                                                          "type":  "string"
+                                                                                      },
+                                                                                      {
+                                                                                          "type":  "null"
+                                                                                      }
+                                                                                  ],
+                                                                        "default":  null
+                                                                    },
+                                                 "look_at_up":  {
+                                                                    "anyOf":  [
+                                                                                  {
+                                                                                      "items":  {
+                                                                                                    "type":  "number"
+                                                                                                },
+                                                                                      "type":  "array"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "null"
+                                                                                  }
+                                                                              ],
+                                                                    "default":  null
+                                                                }
+                                             },
+                              "type":  "object"
+                          },
+    "find_gameobjects":  {
+                             "additionalProperties":  false,
+                             "properties":  {
+                                                "search_term":  {
+                                                                    "description":  "The value to search for (name, tag, layer name, component type, or path)",
+                                                                    "type":  "string"
+                                                                },
+                                                "search_method":  {
+                                                                      "default":  "by_name",
+                                                                      "description":  "How to search for GameObjects",
+                                                                      "enum":  [
+                                                                                   "by_name",
+                                                                                   "by_tag",
+                                                                                   "by_layer",
+                                                                                   "by_component",
+                                                                                   "by_path",
+                                                                                   "by_id"
+                                                                               ],
+                                                                      "type":  "string"
+                                                                  },
+                                                "include_inactive":  {
+                                                                         "anyOf":  [
+                                                                                       {
+                                                                                           "type":  "boolean"
+                                                                                       },
+                                                                                       {
+                                                                                           "type":  "string"
+                                                                                       },
+                                                                                       {
+                                                                                           "type":  "null"
+                                                                                       }
+                                                                                   ],
+                                                                         "default":  null,
+                                                                         "description":  "Include inactive GameObjects in search"
+                                                                     },
+                                                "page_size":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "type":  "integer"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null,
+                                                                  "description":  "Number of results per page (default: 50, max: 500)"
+                                                              },
+                                                "cursor":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "integer"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null,
+                                                               "description":  "Pagination cursor (offset for next page)"
+                                                           }
+                                            },
+                             "required":  [
+                                              "search_term"
+                                          ],
+                             "type":  "object"
+                         },
+    "manage_components":  {
+                              "additionalProperties":  false,
+                              "properties":  {
+                                                 "action":  {
+                                                                "description":  "Action to perform: add (add component), remove (remove component), set_property (set component property)",
+                                                                "enum":  [
+                                                                             "add",
+                                                                             "remove",
+                                                                             "set_property"
+                                                                         ],
+                                                                "type":  "string"
+                                                            },
+                                                 "target":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "integer"
+                                                                              }
+                                                                          ],
+                                                                "description":  "Target GameObject - instance ID (preferred) or name/path"
+                                                            },
+                                                 "component_type":  {
+                                                                        "description":  "Component type name (e.g., \u0027Rigidbody\u0027, \u0027BoxCollider\u0027, \u0027MyScript\u0027)",
+                                                                        "type":  "string"
+                                                                    },
+                                                 "search_method":  {
+                                                                       "anyOf":  [
+                                                                                     {
+                                                                                         "enum":  [
+                                                                                                      "by_id",
+                                                                                                      "by_name",
+                                                                                                      "by_path"
+                                                                                                  ],
+                                                                                         "type":  "string"
+                                                                                     },
+                                                                                     {
+                                                                                         "type":  "null"
+                                                                                     }
+                                                                                 ],
+                                                                       "default":  null,
+                                                                       "description":  "How to find the target GameObject"
+                                                                   },
+                                                 "property":  {
+                                                                  "anyOf":  [
+                                                                                {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                                {
+                                                                                    "type":  "null"
+                                                                                }
+                                                                            ],
+                                                                  "default":  null,
+                                                                  "description":  "Property name to set (for set_property action)"
+                                                              },
+                                                 "value":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "integer"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "number"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "boolean"
+                                                                             },
+                                                                             {
+                                                                                 "additionalProperties":  true,
+                                                                                 "type":  "object"
+                                                                             },
+                                                                             {
+                                                                                 "items":  {
+
+                                                                                           },
+                                                                                 "type":  "array"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null,
+                                                               "description":  "Value to set (for set_property action). For object references: instance ID (int), asset path (string), or {\"guid\": \"...\"} / {\"path\": \"...\"}. For Sprite sub-assets: {\"guid\": \"...\", \"spriteName\": \"\u003cname\u003e\"} or {\"guid\": \"...\", \"fileID\": \u003cid\u003e}. Single-sprite textures auto-resolve."
+                                                           },
+                                                 "properties":  {
+                                                                    "anyOf":  [
+                                                                                  {
+                                                                                      "additionalProperties":  true,
+                                                                                      "type":  "object"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                                  {
+                                                                                      "type":  "null"
+                                                                                  }
+                                                                              ],
+                                                                    "description":  "Dictionary of property names to values. Example: {\"mass\": 5.0, \"useGravity\": false}",
+                                                                    "default":  null
+                                                                },
+                                                 "component_index":  {
+                                                                         "anyOf":  [
+                                                                                       {
+                                                                                           "type":  "integer"
+                                                                                       },
+                                                                                       {
+                                                                                           "type":  "null"
+                                                                                       }
+                                                                                   ],
+                                                                         "default":  null,
+                                                                         "description":  "Zero-based index to select which component when multiple of the same type exist. Use the components resource to discover indices. If omitted, targets the first instance."
+                                                                     }
+                                             },
+                              "required":  [
+                                               "action",
+                                               "target",
+                                               "component_type"
+                                           ],
+                              "type":  "object"
+                          },
+    "manage_scene":  {
+                         "additionalProperties":  false,
+                         "properties":  {
+                                            "action":  {
+                                                           "description":  "Perform CRUD operations on Unity scenes and control the Scene View camera.",
+                                                           "enum":  [
+                                                                        "create",
+                                                                        "load",
+                                                                        "save",
+                                                                        "get_hierarchy",
+                                                                        "get_active",
+                                                                        "get_build_settings",
+                                                                        "scene_view_frame",
+                                                                        "close_scene",
+                                                                        "set_active_scene",
+                                                                        "get_loaded_scenes",
+                                                                        "move_to_scene",
+                                                                        "validate"
+                                                                    ],
+                                                           "type":  "string"
+                                                       },
+                                            "name":  {
+                                                         "anyOf":  [
+                                                                       {
+                                                                           "type":  "string"
+                                                                       },
+                                                                       {
+                                                                           "type":  "null"
+                                                                       }
+                                                                   ],
+                                                         "default":  null
+                                                     },
+                                            "path":  {
+                                                         "anyOf":  [
+                                                                       {
+                                                                           "type":  "string"
+                                                                       },
+                                                                       {
+                                                                           "type":  "null"
+                                                                       }
+                                                                   ],
+                                                         "default":  null
+                                                     },
+                                            "build_index":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "integer"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            },
+                                            "scene_view_target":  {
+                                                                      "anyOf":  [
+                                                                                    {
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                                    {
+                                                                                        "type":  "integer"
+                                                                                    },
+                                                                                    {
+                                                                                        "type":  "null"
+                                                                                    }
+                                                                                ],
+                                                                      "default":  null
+                                                                  },
+                                            "parent":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "integer"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "page_size":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "integer"
+                                                                            },
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                            "cursor":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "type":  "integer"
+                                                                         },
+                                                                         {
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "max_nodes":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "integer"
+                                                                            },
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                            "max_depth":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "integer"
+                                                                            },
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                            "max_children_per_node":  {
+                                                                          "anyOf":  [
+                                                                                        {
+                                                                                            "type":  "integer"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "null"
+                                                                                        }
+                                                                                    ],
+                                                                          "default":  null
+                                                                      },
+                                            "include_transform":  {
+                                                                      "anyOf":  [
+                                                                                    {
+                                                                                        "type":  "boolean"
+                                                                                    },
+                                                                                    {
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                                    {
+                                                                                        "type":  "null"
+                                                                                    }
+                                                                                ],
+                                                                      "default":  null
+                                                                  },
+                                            "scene_name":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null
+                                                           },
+                                            "scene_path":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null
+                                                           },
+                                            "target":  {
+                                                           "anyOf":  [
+                                                                         {
+                                                                             "type":  "string"
+                                                                         },
+                                                                         {
+                                                                             "type":  "integer"
+                                                                         },
+                                                                         {
+                                                                             "type":  "null"
+                                                                         }
+                                                                     ],
+                                                           "default":  null
+                                                       },
+                                            "remove_scene":  {
+                                                                 "anyOf":  [
+                                                                               {
+                                                                                   "type":  "boolean"
+                                                                               },
+                                                                               {
+                                                                                   "type":  "string"
+                                                                               },
+                                                                               {
+                                                                                   "type":  "null"
+                                                                               }
+                                                                           ],
+                                                                 "default":  null
+                                                             },
+                                            "additive":  {
+                                                             "anyOf":  [
+                                                                           {
+                                                                               "type":  "boolean"
+                                                                           },
+                                                                           {
+                                                                               "type":  "string"
+                                                                           },
+                                                                           {
+                                                                               "type":  "null"
+                                                                           }
+                                                                       ],
+                                                             "default":  null
+                                                         },
+                                            "template":  {
+                                                             "anyOf":  [
+                                                                           {
+                                                                               "type":  "string"
+                                                                           },
+                                                                           {
+                                                                               "type":  "null"
+                                                                           }
+                                                                       ],
+                                                             "default":  null
+                                                         },
+                                            "auto_repair":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "boolean"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            }
+                                        },
+                         "required":  [
+                                          "action"
+                                      ],
+                         "type":  "object"
+                     },
+    "manage_editor":  {
+                          "additionalProperties":  false,
+                          "properties":  {
+                                             "action":  {
+                                                            "description":  "Get and update the Unity Editor state. deploy_package copies the configured MCPForUnity source into the project\u0027s package location (triggers recompile). restore_package reverts the last deployment from backup. undo/redo perform editor undo/redo. For prefab editing (open/save/close prefab stage), use manage_prefabs.",
+                                                            "enum":  [
+                                                                         "telemetry_status",
+                                                                         "telemetry_ping",
+                                                                         "play",
+                                                                         "pause",
+                                                                         "stop",
+                                                                         "set_active_tool",
+                                                                         "add_tag",
+                                                                         "remove_tag",
+                                                                         "add_layer",
+                                                                         "remove_layer",
+                                                                         "deploy_package",
+                                                                         "restore_package",
+                                                                         "undo",
+                                                                         "redo"
+                                                                     ],
+                                                            "type":  "string"
+                                                        },
+                                             "tool_name":  {
+                                                               "anyOf":  [
+                                                                             {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                             {
+                                                                                 "type":  "null"
+                                                                             }
+                                                                         ],
+                                                               "default":  null
+                                                           },
+                                             "tag_name":  {
+                                                              "anyOf":  [
+                                                                            {
+                                                                                "type":  "string"
+                                                                            },
+                                                                            {
+                                                                                "type":  "null"
+                                                                            }
+                                                                        ],
+                                                              "default":  null
+                                                          },
+                                             "layer_name":  {
+                                                                "anyOf":  [
+                                                                              {
+                                                                                  "type":  "string"
+                                                                              },
+                                                                              {
+                                                                                  "type":  "null"
+                                                                              }
+                                                                          ],
+                                                                "default":  null
+                                                            }
+                                         },
+                          "required":  [
+                                           "action"
+                                       ],
+                          "type":  "object"
+                      }
+}

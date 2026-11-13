@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664dc0bbffbfded418fafaebe607fe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 3110680251446438433, guid: e7c51fde6fd220c4dbe35ff2fb31aead, type: 3}
 --- !u!1 &176286786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,6 +1608,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae63baec960c64468a2e7ced76c9cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnInterval: 2
+  _arenaHalfSize: 50
+  _spawnOffset: 5
+  _enemyFactory: {fileID: 1753974395}
 --- !u!1 &1687708859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,8 +1717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d7a21409c27e646ab97b27ffa4f0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 0}
-  _player: {fileID: 0}
+  _enemyPool: {fileID: 173885325}
+  _player: {fileID: 1672365944}
 --- !u!1001 &1936290927
 PrefabInstance:
   m_ObjectHideFlags: 0
