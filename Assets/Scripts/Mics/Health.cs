@@ -10,7 +10,11 @@ public class Health : MonoBehaviour
 
     public float CurrentHealth => _currentHealth;
 
+    public float MaxHealth => _maxHealth;
+
     public event Action Died;
+
+    public event Action HealthChanged;
 
     private void Awake()
     {
@@ -23,6 +27,7 @@ public class Health : MonoBehaviour
             return;
 
         _currentHealth -= damage;
+        HealthChanged?.Invoke();
 
         if (_currentHealth <= 0)
             Die();
@@ -32,6 +37,7 @@ public class Health : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _isDead = false;
+        HealthChanged?.Invoke();
     }
 
     private void Die()
