@@ -278,7 +278,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126179902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -351,6 +351,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 173885322}
+  - component: {fileID: 173885324}
+  - component: {fileID: 173885323}
   m_Layer: 0
   m_Name: Pools
   m_TagString: Untagged
@@ -373,6 +375,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1687708860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &173885323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173885321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b58f497f7cb894bad956cfdd643c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 2506761349768324234, guid: c1e4223d624a79c4aabeda9272664886,
+    type: 3}
+--- !u!114 &173885324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173885321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0428962cb4ec20f4bb5533f3d865d60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factory: {fileID: 173885323}
 --- !u!1 &176286786
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +489,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193315900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -524,12 +553,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193315900}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &274923697 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 34ac2c8f2277ffa41b15c0dd1f204e80,
-    type: 3}
-  m_PrefabInstance: {fileID: 1936290927}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,13 +963,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863354275}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70417273, y: -0.70417356, z: -0.06434441, w: 0.06434453}
-  m_LocalPosition: {x: -0.022, y: 0.322, z: 0.07}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0598296, y: 1.3656539, z: -0.039713226}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1214207545}
-  m_Father: {fileID: 274923697}
+  m_Father: {fileID: 1936290928}
   m_LocalEulerAnglesHint: {x: -100.442, y: 180, z: 0}
 --- !u!1 &1190982375
 GameObject:
@@ -989,7 +1012,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190982375}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1098,10 +1121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3e1979e819082458ebf7f6c4be271d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2506761349768324234, guid: c1e4223d624a79c4aabeda9272664886, type: 3}
   _shootPoint: {fileID: 863354276}
   _damage: 1
   _shootDelay: 1
+  _projectilePool: {fileID: 173885324}
 --- !u!1001 &1240597077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1317,7 +1340,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353427400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1735,7 +1758,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: 34ac2c8f2277ffa41b15c0dd1f204e80,
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34ac2c8f2277ffa41b15c0dd1f204e80,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 863354276}
