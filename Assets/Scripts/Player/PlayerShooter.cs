@@ -10,6 +10,7 @@ public class PlayerShooter : MonoBehaviour
     public void OnEnemyDetected(Enemy enemy)
     {
         _target = enemy;
+        _weapon.SetTarget(_target);
     }
 
     private void Update()
