@@ -14,10 +14,13 @@ public class Blaster : Weapon
         if (Target == null)
             return;
 
+        float damage = Random.Range(MinDamage, MaxDamage);
+
         _nextShootTime = Time.time + ShootDelay;
 
         Projectile projectile = _projectilePool.Get();
         projectile.transform.position = ShootPoint.position;
         projectile.transform.rotation = Quaternion.LookRotation(Target.position - ShootPoint.position);
+        projectile.SetDamage(damage);
     }
 }
