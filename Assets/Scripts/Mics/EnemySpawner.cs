@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float _boundary = 55f;
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnEnemy(EnemyPool enemyPool)
     {
-        
+        System.Random random = new System.Random();
+        bool x = Convert.ToBoolean(random.Next(0, 2));
+        bool z = Convert.ToBoolean(random.Next(0, 2));
+
+        Vector3 spawnPosition = new Vector3(x ? _boundary : -_boundary, 0.0f, z ? _boundary : -_boundary);
+        Enemy enemy = enemyPool.Get();
+        enemy.transform.position = spawnPosition;
     }
 }
