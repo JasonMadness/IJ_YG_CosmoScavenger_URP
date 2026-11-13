@@ -3,14 +3,13 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private float _minDamage;
-    [SerializeField] private float _maxDamage;
-    [SerializeField] private float _shootDelay;
+    [SerializeField] protected float MinDamage;
+    [SerializeField] protected float MaxDamage;
+    [SerializeField] protected float ShootDelay;
 
     protected Transform Target;
 
     protected Transform ShootPoint => _shootPoint;
-    protected float ShootDelay => _shootDelay;
 
     public void SetTarget(Enemy target)
     {
