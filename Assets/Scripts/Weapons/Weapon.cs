@@ -1,10 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] private Transform _shootPoint;
-    [SerializeField] private float _damage;
+    [SerializeField] private float _minDamage;
+    [SerializeField] private float _maxDamage;
     [SerializeField] private float _shootDelay;
 
     protected Transform Target;
