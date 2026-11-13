@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemyFactory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Player _player;
 
-    // Update is called once per frame
-    void Update()
+    public Enemy Create()
     {
-        
+        Enemy enemy = Instantiate(_enemyPrefab);
+        enemy.Initialize(_player);
+        return enemy;
     }
 }
