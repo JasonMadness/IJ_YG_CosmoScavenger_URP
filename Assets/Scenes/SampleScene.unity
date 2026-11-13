@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367780029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214207545}
   - component: {fileID: 1214207546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,9 +1038,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootPoint: {fileID: 367780029}
-  _minDamage: 3
-  _maxDamage: 7
-  _shootDelay: 1
+  MinDamage: 3
+  MaxDamage: 7
+  ShootDelay: 1
   _projectilePool: {fileID: 173885324}
 --- !u!1001 &1240597077
 PrefabInstance:
@@ -1054,6 +1054,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832602270134434077, guid: 8b64da562a28e9249a7caff7981916cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6380498687239386317, guid: 8b64da562a28e9249a7caff7981916cf,
         type: 3}
@@ -1823,6 +1828,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3110680251446438433, guid: e7c51fde6fd220c4dbe35ff2fb31aead,
+        type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 582759752}
     - target: {fileID: 3110680251446438433, guid: e7c51fde6fd220c4dbe35ff2fb31aead,
         type: 3}
       propertyPath: _player
