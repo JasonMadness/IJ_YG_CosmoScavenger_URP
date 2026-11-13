@@ -3,21 +3,25 @@ using System.Collections;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] private Projectile _prefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _damage;
     [SerializeField] private float _shootDelay;
 
-    private Coroutine _shootCoroutine;
+    protected Transform Target;
+
+    protected Transform ShootPoint => _shootPoint;
+    protected float ShootDelay => _shootDelay;
+
+    public void SetTarget(Enemy target)
+    {
+        if (target == null)
+        {
+            Target = null;
+            return;
+        }
+
+        Target = target.transform;
+    }
 
     public abstract void Shoot();
-
-    private IEnumerator ShootCoroutine()
-    {
-        while (isActiveAndEnabled)
-        {
-            Shoot();
-            yield return new WaitForSeconds(_shootDelay);
-        }
-    }
 }
