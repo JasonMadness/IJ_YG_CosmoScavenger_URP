@@ -8,6 +8,11 @@ public class Enemy : MonoBehaviour
 
     public bool IsTargetable => _health.CurrentHealth > 0;
 
+    public void Initialize(Player player)
+    {
+        _player = player;
+    }
+
     private void Start()
     {
         _enemyMover.SetTarget(_player);
