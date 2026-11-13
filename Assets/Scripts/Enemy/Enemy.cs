@@ -2,24 +2,39 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private EnemyMover _enemyMover;
     [SerializeField] private Health _health;
 
+    private Player _player;
+    private EnemyPool _enemyPool;
+
     public bool IsTargetable => _health.CurrentHealth > 0;
 
-    public void Initialize(Player player)
+    private void OnEnable()
     {
-        _player = player;
+        _health.Died += HandleDeath;
     }
 
-    private void Start()
+    private void OnDisable()
     {
+        _health.Died -= HandleDeath;
+    }
+
+    public void Initialize(Player player, EnemyPool enemyPool)
+    {
+        _player = player;
+        _enemyPool = enemyPool;
+        _health.Restore();
         _enemyMover.SetTarget(_player);
     }
 
     public void TakeDamage(float damage)
     {
         _health.TakeDamage(damage);
+    }
+
+    private void HandleDeath()
+    {
+        _enemyPool.Release(this);
     }
 }
