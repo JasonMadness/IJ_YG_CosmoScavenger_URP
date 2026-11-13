@@ -1,20 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float _boundary = 55f;
+    [SerializeField] private float _spawnInterval = 2f;
+    [SerializeField] private float _arenaHalfSize = 50f;
+    [SerializeField] private float _spawnOffset = 5f;
+    [SerializeField] private EnemyFactory _enemyFactory;
 
-    public void SpawnEnemy(EnemyPool enemyPool)
+    private void Start()
     {
-        System.Random random = new System.Random();
-        bool x = Convert.ToBoolean(random.Next(0, 2));
-        bool z = Convert.ToBoolean(random.Next(0, 2));
+        InvokeRepeating(nameof(SpawnEnemy), 0f, _spawnInterval);
+    }
 
-        Vector3 spawnPosition = new Vector3(x ? _boundary : -_boundary, 0.0f, z ? _boundary : -_boundary);
-        Enemy enemy = enemyPool.Get();
-        enemy.transform.position = spawnPosition;
+    private void SpawnEnemy()
+    {
+        Enemy enemy = _enemyFactory.Create();
+        enemy.transform.position = GetSpawnPosition();
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
+        float outsideDistance = _arenaHalfSize + _spawnOffset;
+        float alongAxis = Random.Range(-_arenaHalfSize, _arenaHalfSize);
+        int side = Random.Range(0, 4);
+
+        return side switch
+        {
+            0 => new Vector3(outsideDistance, 0f, alongAxis),
+            1 => new Vector3(-outsideDistance, 0f, alongAxis),
+            2 => new Vector3(alongAxis, 0f, outsideDistance),
+            _ => new Vector3(alongAxis, 0f, -outsideDistance)
+        };
     }
 }
