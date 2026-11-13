@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [SerializeField] private Rigidbody _rigidbody;
 
+    private float _damage;
     private ProjectilePool _pool;
     private bool _isReleased;
 
@@ -14,6 +15,11 @@ public class Projectile : MonoBehaviour
         _isReleased = false;
     }
 
+    public void SetDamage(float damage)
+    {
+        _damage = damage;
+    }
+
     private void FixedUpdate()
     {
         _rigidbody.velocity = transform.forward * _speed;
@@ -21,7 +27,15 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_isReleased || _pool == null)
+        if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        {
+            enemy.TakeDamage(_damage);
+        }
+
+        if (_pool == null)
+            Destroy(gameObject);
+
+        if (_isReleased)
             return;
 
         _isReleased = true;
