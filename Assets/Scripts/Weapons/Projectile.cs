@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _speed = 10f;
+    [SerializeField] private Rigidbody _rigidbody;
+
+    private ProjectilePool _pool;
+    private bool _isReleased;
+
+    public void Initialize(ProjectilePool pool)
     {
-        
+        _pool = pool;
+        _isReleased = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        _rigidbody.velocity = transform.forward * _speed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_isReleased || _pool == null)
+            return;
+
+        _isReleased = true;
+        _pool.Release(this);
     }
 }
