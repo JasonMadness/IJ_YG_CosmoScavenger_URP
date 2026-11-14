@@ -49,6 +49,11 @@ public class PlayerMover : MonoBehaviour
         _playerControls.Dispose();
     }
 
+    public void IncreaseSpeed(float percent)
+    {
+        _moveSpeed *= 1f + percent;
+    }
+
     private void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
