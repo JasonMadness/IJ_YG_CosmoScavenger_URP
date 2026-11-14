@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    private const float MaxResistance = 0.9f;
+
     [SerializeField] private float _maxHealth;
 
     private float _currentHealth;
+    private float _damageResistance;
     private bool _isDead;
 
     public float CurrentHealth => _currentHealth;
@@ -26,11 +29,16 @@ public class Health : MonoBehaviour
         if (_isDead)
             return;
 
-        _currentHealth -= damage;
+        _currentHealth -= damage * (1f - _damageResistance);
         HealthChanged?.Invoke();
 
         if (_currentHealth <= 0)
             Die();
+    }
+
+    public void AddDamageResistance(float amount)
+    {
+        _damageResistance = Mathf.Clamp(_damageResistance + amount, 0f, MaxResistance);
     }
 
     public void Restore()
