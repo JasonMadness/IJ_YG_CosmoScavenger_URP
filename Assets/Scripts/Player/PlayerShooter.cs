@@ -13,6 +13,11 @@ public class PlayerShooter : MonoBehaviour
         _weapon.SetTarget(_target);
     }
 
+    public void IncreaseDamage(float percent)
+    {
+        _weapon.IncreaseDamage(percent);
+    }
+
     private void Update()
     {
         if (_target == null)
