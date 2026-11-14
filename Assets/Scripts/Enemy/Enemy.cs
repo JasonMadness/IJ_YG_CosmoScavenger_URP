@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyMover _enemyMover;
     [SerializeField] private EnemyMeleeAttack _enemyMeleeAttack;
     [SerializeField] private Health _health;
+    [SerializeField] private int _experienceReward = 10;
 
     private Player _player;
     private EnemyPool _enemyPool;
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     private void HandleDeath()
     {
+        _player.GainExperience(_experienceReward);
         _enemyPool.Release(this);
     }
 }
