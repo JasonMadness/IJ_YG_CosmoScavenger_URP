@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
         _playerMover.IncreaseSpeed(percent);
     }
 
+    public void IncreaseAttackSpeed(float percent)
+    {
+        _playerShooter.IncreaseAttackSpeed(percent);
+    }
+
     public void IncreaseArmor(float amount)
     {
         _health.AddDamageResistance(amount);
