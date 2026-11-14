@@ -18,6 +18,11 @@ public class PlayerShooter : MonoBehaviour
         _weapon.IncreaseDamage(percent);
     }
 
+    public void IncreaseAttackSpeed(float percent)
+    {
+        _weapon.IncreaseAttackSpeed(percent);
+    }
+
     private void Update()
     {
         if (_target == null)
