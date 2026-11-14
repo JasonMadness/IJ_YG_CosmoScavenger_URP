@@ -14,7 +14,7 @@ public class Blaster : Weapon
         if (Target == null)
             return;
 
-        float damage = Random.Range(MinDamage, MaxDamage);
+        float damage = ApplyDamageMultiplier(Random.Range(MinDamage, MaxDamage));
 
         _nextShootTime = Time.time + ShootDelay;
 
