@@ -16,7 +16,7 @@ public class Blaster : Weapon
 
         float damage = ApplyDamageMultiplier(Random.Range(MinDamage, MaxDamage));
 
-        _nextShootTime = Time.time + ShootDelay;
+        _nextShootTime = Time.time + CurrentShootDelay;
 
         Projectile projectile = _projectilePool.Get();
         projectile.transform.position = ShootPoint.position;
