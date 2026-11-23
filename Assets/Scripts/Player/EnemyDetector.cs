@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class EnemyDetector : MonoBehaviour
 {
     private const int MaxColliders = 32;

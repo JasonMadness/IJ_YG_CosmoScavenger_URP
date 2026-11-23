@@ -6,10 +6,12 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] private Transform _hand;
 
     private Enemy _target;
+    private bool _hasTarget;
 
     public void OnEnemyDetected(Enemy enemy)
     {
         _target = enemy;
+        _hasTarget = enemy != null;
         _weapon.SetTarget(_target);
     }
 
@@ -26,6 +28,8 @@ public class PlayerShooter : MonoBehaviour
     private void Update()
     {
         if (_target == null)
+            return;
+        if (_hasTarget == false)
             return;
         if (_target.IsTargetable == false)
             return;
