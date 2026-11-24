@@ -1,22 +1,22 @@
-using System;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-    public event Action PauseNeeded;
+    private const float PausedTimeScale = 0f;
+    private const float NormalTimeScale = 1f;
 
-    public void RequestPause()
+    private void OnEnable()
     {
-        PauseNeeded?.Invoke();
+        Time.timeScale = NormalTimeScale;
     }
 
     public void OnPauseNeeded()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = PausedTimeScale;
     }
 
-    public void Resume()
+    public void OnResumeNeeded()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = NormalTimeScale;
     }
 }
