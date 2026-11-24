@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class UpgradeSelectionView : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Experience _experience;
     [SerializeField] private UpgradeCatalog _catalog;
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button[] _optionButtons;
@@ -28,17 +27,7 @@ public class UpgradeSelectionView : MonoBehaviour
         _panel.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        _experience.LevelIncreased += HandleLevelIncreased;
-    }
-
-    private void OnDisable()
-    {
-        _experience.LevelIncreased -= HandleLevelIncreased;
-    }
-
-    private void HandleLevelIncreased()
+    public void OnLevelIncreased()
     {
         _pendingSelections++;
 
