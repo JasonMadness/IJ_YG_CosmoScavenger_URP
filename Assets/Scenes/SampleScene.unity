@@ -258,6 +258,10 @@ MonoBehaviour:
     _guardMargin: 12
     _approachEpsilon: 0.5
     _deadTimeoutSeconds: 30
+    _floorMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    _groundRayHeight: 5
   _bossPrefab: {fileID: 863159684197240724, guid: ee2177d84cadc4b40a555fadcb170a56,
     type: 3}
   _enemyFactory: {fileID: 1753974395}
@@ -2281,7 +2285,7 @@ GameObject:
   - component: {fileID: 1268053532}
   - component: {fileID: 1268053531}
   - component: {fileID: 1268053530}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArenaFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
