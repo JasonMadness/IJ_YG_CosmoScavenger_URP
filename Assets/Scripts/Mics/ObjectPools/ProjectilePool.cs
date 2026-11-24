@@ -1,26 +1,9 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ProjectilePool : MonoBehaviour
+public class ProjectilePool : Pool<Projectile>
 {
-    [SerializeField] private ProjectileFactory _factory;
-
-    private readonly Queue<Projectile> _projectiles = new();
-
-    public Projectile Get()
+    public override Projectile Get()
     {
-        Projectile projectile = _projectiles.Count == 0
-            ? _factory.Create()
-            : _projectiles.Dequeue();
-
+        Projectile projectile = base.Get();
         projectile.Initialize(this);
-        projectile.gameObject.SetActive(true);
         return projectile;
-    }
-
-    public void Release(Projectile projectile)
-    {
-        projectile.gameObject.SetActive(false);
-        _projectiles.Enqueue(projectile);
     }
 }
