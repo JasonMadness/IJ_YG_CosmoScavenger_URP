@@ -10,7 +10,9 @@ public class UpgradeSelectionView : MonoBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button[] _optionButtons;
     [SerializeField] private Text[] _optionLabels;
-    [SerializeField] private Pause _pause;
+
+    public event System.Action PauseNeeded;
+    public event System.Action ResumeNeeded;
 
     private readonly List<PlayerUpgrade> _options = new();
     private int _pendingSelections;
@@ -60,7 +62,7 @@ public class UpgradeSelectionView : MonoBehaviour
         }
 
         _panel.SetActive(true);
-        _pause.RequestPause();
+        PauseNeeded?.Invoke();
     }
 
     private void FillOptions()
@@ -93,6 +95,6 @@ public class UpgradeSelectionView : MonoBehaviour
         }
 
         _panel.SetActive(false);
-        _pause.Resume();
+        ResumeNeeded?.Invoke();
     }
 }
