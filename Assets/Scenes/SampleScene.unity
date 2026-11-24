@@ -254,7 +254,7 @@ MonoBehaviour:
   _arenaSettings:
     _bounds:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 50, y: 0.5, z: 50}
+      m_Extent: {x: 34, y: 0.5, z: 34}
     _guardMargin: 12
     _approachEpsilon: 0.5
     _deadTimeoutSeconds: 30
