@@ -45,13 +45,28 @@ public class Enemy : MonoBehaviour
     public void Spawn(Vector3 position)
     {
         transform.position = position;
+
+        if (_enemyMover != null)
+            _enemyMover.SetGroundY(position.y);
+
         _isSpawned = true;
 
-        // The pooled collider was just re-enabled at its previous (death) position.
-        // Without an immediate sync the physics world keeps the stale transform,
-        // so EnemyDetector's OverlapSphere can see this enemy next to the player
-        // while its transform already sits at the far spawn point.
         Physics.SyncTransforms();
+    }
+
+    public float GetPivotToFeet()
+    {
+        float feetY = transform.position.y;
+
+        foreach (Collider ownCollider in _colliders)
+        {
+            if (ownCollider == null)
+                continue;
+
+            feetY = Mathf.Min(feetY, ownCollider.bounds.min.y);
+        }
+
+        return transform.position.y - feetY;
     }
 
     public void TakeDamage(float damage)
