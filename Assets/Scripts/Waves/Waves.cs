@@ -52,7 +52,9 @@ public class Waves : MonoBehaviour
     private void Awake()
     {
         _rules = new WaveRules(_waveBalance.FirstWaveCount, _waveBalance.GrowthStep);
-        _spawner = new WaveSpawner(_enemyFactory, _bossPrefab, _player, new ArenaSpawnPoints(_arenaSettings.Bounds));
+        ArenaSpawnPoints spawnPoints = new ArenaSpawnPoints(_arenaSettings.Bounds);
+        ArenaGround ground = new ArenaGround(_arenaSettings.Bounds, _arenaSettings.FloorMask, _arenaSettings.GroundRayHeight);
+        _spawner = new WaveSpawner(_enemyFactory, _bossPrefab, _player, spawnPoints, ground);
         _tracker = new EnemyTracker();
         _guard = new StrayEnemyGuard(
             _tracker,
