@@ -7,7 +7,7 @@ public abstract class Pool<T> : MonoBehaviour where T : Component
 
     private readonly Queue<T> _pool = new();
 
-    public T Get()
+    public virtual T Get()
     {
         if (_pool.Count == 0)
             Create();
