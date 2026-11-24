@@ -7,18 +7,12 @@ public class ExperienceView : MonoBehaviour
     [SerializeField] private Slider _progressSlider;
     [SerializeField] private Text _levelLabel;
 
-    private void OnEnable()
+    private void Start()
     {
-        _experience.Changed += Refresh;
-        Refresh();
+        OnExperienceChanged();
     }
 
-    private void OnDisable()
-    {
-        _experience.Changed -= Refresh;
-    }
-
-    private void Refresh()
+    public void OnExperienceChanged()
     {
         _progressSlider.value = _experience.Progress;
         _levelLabel.text = "Level " + _experience.Level;
