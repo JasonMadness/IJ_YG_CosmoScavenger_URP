@@ -6,56 +6,45 @@ public class WavesView : MonoBehaviour
     [SerializeField] private Waves _waves;
     [SerializeField] private Text _waveText;
 
+    private string _lastText;
+
     private void OnEnable()
     {
-        if (_waves == null)
-            return;
-
-        _waves.WaveStarted += ShowWave;
-        _waves.PauseTick += ShowCountdown;
-        _waves.BossAppeared += ShowBoss;
-        _waves.GameEnded += ShowGameEnd;
-
-        if (!_waves.IsGameOver)
-            ShowWave(_waves.CurrentWave);
+        _lastText = null;
     }
 
-    private void OnDisable()
+    private void Update()
     {
         if (_waves == null)
             return;
 
-        _waves.WaveStarted -= ShowWave;
-        _waves.PauseTick -= ShowCountdown;
-        _waves.BossAppeared -= ShowBoss;
-        _waves.GameEnded -= ShowGameEnd;
-    }
+        string text = BuildText();
 
-    private void ShowWave(int wave)
-    {
-        SetText("Волна " + wave);
-    }
+        if (text == _lastText)
+            return;
 
-    private void ShowCountdown(int nextWave, int seconds)
-    {
-        SetText("Волна " + nextWave + " через " + seconds + " сек");
-    }
+        _lastText = text;
 
-    private void ShowBoss(int wave)
-    {
-        SetText("Волна " + wave + ": БОСС");
-    }
-
-    private void ShowGameEnd(bool victory)
-    {
-        SetText(victory ? "Игра окончена: победа!" : "Вы умерли");
-    }
-
-    private void SetText(string text)
-    {
         if (_waveText != null)
             _waveText.text = text;
 
         Debug.Log("[Waves] " + text);
+    }
+
+    private string BuildText()
+    {
+        if (_waves.IsGameOver)
+            return _waves.IsVictory ? "Игра окончена: победа!" : "Вы умерли";
+
+        switch (_waves.Phase)
+        {
+            case WavePhase.Pause:
+                return "Волна " + (_waves.CurrentWave + 1) + " через "
+                       + Mathf.CeilToInt(_waves.PauseSecondsRemaining) + " сек";
+            case WavePhase.Boss:
+                return "Волна " + _waves.CurrentWave + ": БОСС";
+            default:
+                return "Волна " + _waves.CurrentWave;
+        }
     }
 }
