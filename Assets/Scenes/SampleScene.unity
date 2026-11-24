@@ -3367,6 +3367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pause: {fileID: 1910110004}
+  _upgradeSelectionView: {fileID: 1931165602}
 --- !u!114 &1910110004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3514,7 +3515,6 @@ MonoBehaviour:
   - {fileID: 97264613}
   - {fileID: 261639487}
   - {fileID: 1406671148}
-  _pause: {fileID: 1910110004}
 --- !u!1001 &1936290927
 PrefabInstance:
   m_ObjectHideFlags: 0
