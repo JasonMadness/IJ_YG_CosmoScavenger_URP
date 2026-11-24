@@ -8,6 +8,8 @@ public sealed class ArenaSettings
     [SerializeField] private float _guardMargin = 12f;
     [SerializeField] private float _approachEpsilon = 0.5f;
     [SerializeField] private float _deadTimeoutSeconds = 30f;
+    [SerializeField] private LayerMask _floorMask;
+    [SerializeField] private float _groundRayHeight = 5f;
 
     public Bounds Bounds => _bounds;
 
@@ -16,4 +18,8 @@ public sealed class ArenaSettings
     public float ApproachEpsilon => _approachEpsilon;
 
     public float DeadTimeoutSeconds => _deadTimeoutSeconds;
+
+    public LayerMask FloorMask => _floorMask;
+
+    public float GroundRayHeight => _groundRayHeight;
 }
