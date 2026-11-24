@@ -2,17 +2,21 @@ using UnityEngine;
 
 public sealed class WaveSpawner
 {
+    private const float GroundEpsilon = 0.01f;
+
     private readonly EnemyFactory _enemyFactory;
     private readonly GameObject _bossPrefab;
     private readonly Player _player;
     private readonly ArenaSpawnPoints _spawnPoints;
+    private readonly ArenaGround _ground;
 
-    public WaveSpawner(EnemyFactory enemyFactory, GameObject bossPrefab, Player player, ArenaSpawnPoints spawnPoints)
+    public WaveSpawner(EnemyFactory enemyFactory, GameObject bossPrefab, Player player, ArenaSpawnPoints spawnPoints, ArenaGround ground)
     {
         _enemyFactory = enemyFactory;
         _bossPrefab = bossPrefab;
         _player = player;
         _spawnPoints = spawnPoints;
+        _ground = ground;
     }
 
     public Enemy SpawnRegular()
@@ -28,7 +32,7 @@ public sealed class WaveSpawner
         if (enemy == null)
             return null;
 
-        enemy.Spawn(_spawnPoints.Next());
+        enemy.Spawn(GetGroundedPosition(enemy, _spawnPoints.Next()));
 
         return enemy;
     }
@@ -41,7 +45,8 @@ public sealed class WaveSpawner
             return null;
         }
 
-        GameObject bossObject = Object.Instantiate(_bossPrefab, _spawnPoints.Next(), Quaternion.identity);
+        Vector3 spawnPoint = _spawnPoints.Next();
+        GameObject bossObject = Object.Instantiate(_bossPrefab, spawnPoint, Quaternion.identity);
         Enemy boss = bossObject.GetComponent<Enemy>();
 
         if (boss == null)
@@ -59,8 +64,19 @@ public sealed class WaveSpawner
         }
 
         boss.Initialize(_player, null);
-        boss.Spawn(bossObject.transform.position);
+        boss.Spawn(GetGroundedPosition(boss, spawnPoint));
 
         return boss;
+    }
+
+    private Vector3 GetGroundedPosition(Enemy enemy, Vector3 spawnPoint)
+    {
+        float floorY = _ground.GetFloorY(spawnPoint);
+
+        Physics.SyncTransforms();
+
+        float pivotToFeet = enemy.GetPivotToFeet();
+
+        return new Vector3(spawnPoint.x, floorY + pivotToFeet + GroundEpsilon, spawnPoint.z);
     }
 }
