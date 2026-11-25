@@ -247,10 +247,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveBalance:
-    _firstWaveCount: 10
-    _growthStep: 5
+    _firstWaveCount: 0
+    _growthStep: 0
     _spawnInterval: 0.8
-    _pauseBetweenWaves: 5
+    _pauseBetweenWaves: 0
   _arenaSettings:
     _bounds:
       m_Center: {x: 0, y: 0, z: 0}
