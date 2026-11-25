@@ -18,8 +18,10 @@ function Send-McpRequest {
     $headers = @{ 'Accept' = 'application/json, text/event-stream' }
     if ($SessionId) { $headers['Mcp-Session-Id'] = $SessionId }
 
-    return Invoke-WebRequest -Uri $baseUrl -Method Post -Body $json `
-        -ContentType 'application/json' -Headers $headers `
+    $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($json)
+
+    return Invoke-WebRequest -Uri $baseUrl -Method Post -Body $bodyBytes `
+        -ContentType 'application/json; charset=utf-8' -Headers $headers `
         -UseBasicParsing -TimeoutSec 120
 }
 

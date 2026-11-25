@@ -1,0 +1,12 @@
+GameObject uiRoot = GameObject.Find("Interface");
+Transform selection = uiRoot.transform.Find("Canvas/UpgradeSelection");
+Transform title = selection.Find("Title");
+title.GetComponent<UnityEngine.UI.Text>().text = "Новый уровень! Выберите усилитель";
+string result = "title=" + title.GetComponent<UnityEngine.UI.Text>().text;
+for (int i = 0; i < 3; i++) {
+  Transform card = selection.Find("Option" + (i + 1));
+  UnityEngine.UI.Text label = card.Find("Label").GetComponent<UnityEngine.UI.Text>();
+  label.text = "Вариант " + (i + 1);
+  result += " | " + label.text;
+}
+return result;

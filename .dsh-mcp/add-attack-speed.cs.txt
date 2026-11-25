@@ -1,0 +1,33 @@
+string assetPath = "Assets/Upgrades/AttackSpeedUpgrade.asset";
+AttackSpeedUpgrade upgrade = UnityEditor.AssetDatabase.LoadAssetAtPath<AttackSpeedUpgrade>(assetPath);
+if (upgrade == null) {
+  upgrade = ScriptableObject.CreateInstance<AttackSpeedUpgrade>();
+  UnityEditor.AssetDatabase.CreateAsset(upgrade, assetPath);
+}
+UnityEditor.SerializedObject so = new UnityEditor.SerializedObject(upgrade);
+so.FindProperty("_title").stringValue = "Увеличение скорости атаки";
+so.FindProperty("_description").stringValue = "+20% скорости атаки";
+so.FindProperty("_attackSpeedPercent").floatValue = 0.2f;
+so.ApplyModifiedPropertiesWithoutUndo();
+UnityEditor.EditorUtility.SetDirty(upgrade);
+
+string catalogPath = "Assets/Upgrades/UpgradeCatalog.asset";
+UpgradeCatalog catalog = UnityEditor.AssetDatabase.LoadAssetAtPath<UpgradeCatalog>(catalogPath);
+UnityEditor.SerializedObject cso = new UnityEditor.SerializedObject(catalog);
+UnityEditor.SerializedProperty list = cso.FindProperty("_upgrades");
+bool alreadyPresent = false;
+for (int i = 0; i < list.arraySize; i++) {
+  if (list.GetArrayElementAtIndex(i).objectReferenceValue == upgrade) alreadyPresent = true;
+}
+if (alreadyPresent == false) {
+  list.InsertArrayElementAtIndex(list.arraySize);
+  list.GetArrayElementAtIndex(list.arraySize - 1).objectReferenceValue = upgrade;
+}
+cso.ApplyModifiedPropertiesWithoutUndo();
+UnityEditor.EditorUtility.SetDirty(catalog);
+UnityEditor.AssetDatabase.SaveAssets();
+
+UpgradeCatalog reloaded = UnityEditor.AssetDatabase.LoadAssetAtPath<UpgradeCatalog>(catalogPath);
+string names = "";
+foreach (var item in reloaded.Upgrades) names += item.Title + " | ";
+return "catalog=[" + names + "]";
