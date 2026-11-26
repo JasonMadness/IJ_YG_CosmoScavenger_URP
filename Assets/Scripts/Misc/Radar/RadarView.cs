@@ -3,8 +3,6 @@ using UnityEngine;
 
 public sealed class RadarView : MonoBehaviour
 {
-    private const float DirectionEpsilonSqr = 0.0001f;
-
     [SerializeField] private Waves _waves;
     [SerializeField] private Transform _playerModel;
     [SerializeField] private RadarArrowPool _arrowPool;
@@ -76,18 +74,8 @@ public sealed class RadarView : MonoBehaviour
 
     private Vector2 GetRadarDirection(Vector3 toEnemyNormalized)
     {
-        Vector3 forward = _playerModel.forward;
-        forward.y = 0f;
-
-        if (forward.sqrMagnitude < DirectionEpsilonSqr)
-            forward = Vector3.forward;
-        else
-            forward.Normalize();
-
-        Vector3 right = Vector3.Cross(Vector3.up, forward);
-
-        return new Vector2(
-            Vector3.Dot(toEnemyNormalized, right),
-            Vector3.Dot(toEnemyNormalized, forward));
+        // Радар привязан к миру: верх — +Z, право — +X.
+        // Камера фиксирована по yaw, поэтому это совпадает с направлением на экране.
+        return new Vector2(toEnemyNormalized.x, toEnemyNormalized.z);
     }
 }
