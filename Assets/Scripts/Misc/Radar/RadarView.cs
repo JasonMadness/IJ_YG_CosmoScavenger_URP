@@ -7,8 +7,6 @@ public sealed class RadarView : MonoBehaviour
     [SerializeField] private Transform _playerModel;
     [SerializeField] private RadarArrowPool _arrowPool;
     [SerializeField] private float _radius = 62f;
-    [SerializeField] private float _maxRange = 40f;
-    [SerializeField] private float _minRange = 6f;
 
     private readonly List<RadarArrow> _shown = new();
 
@@ -42,10 +40,9 @@ public sealed class RadarView : MonoBehaviour
                 continue;
 
             Vector2 direction = GetRadarDirection(toEnemy / distance);
-            float radial = Mathf.Clamp01(distance / _maxRange);
 
             RadarArrow arrow = TakeArrow(used);
-            arrow.Show(direction, Mathf.Lerp(_minRange, _radius, radial));
+            arrow.Show(direction, _radius);
             used++;
         }
 
