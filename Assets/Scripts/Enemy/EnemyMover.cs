@@ -5,11 +5,13 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _reachDistance;
 
+    private float _baseSpeed;
     private float _groundY;
     private Player _target;
 
     private void Awake()
     {
+        _baseSpeed = _speed;
         _groundY = transform.position.y;
     }
 
@@ -21,6 +23,14 @@ public class EnemyMover : MonoBehaviour
     public void SetGroundY(float groundY)
     {
         _groundY = groundY;
+    }
+
+    public void ApplySpeedMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f)
+            multiplier = 1f;
+
+        _speed = _baseSpeed * multiplier;
     }
 
     private void Update()
