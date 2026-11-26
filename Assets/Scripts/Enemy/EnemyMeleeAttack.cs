@@ -6,13 +6,37 @@ public class EnemyMeleeAttack : MonoBehaviour
     [SerializeField] private float _attackInterval = 1f;
     [SerializeField] private float _attackRange = 1.5f;
 
+    private float _baseDamage;
+    private float _baseAttackInterval;
     private Health _targetHealth;
     private float _nextAttackTime;
+
+    private void Awake()
+    {
+        _baseDamage = _damage;
+        _baseAttackInterval = _attackInterval;
+    }
 
     public void SetTarget(Health targetHealth)
     {
         _targetHealth = targetHealth;
         _nextAttackTime = Time.time + _attackInterval;
+    }
+
+    public void ApplyDamageMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f)
+            multiplier = 1f;
+
+        _damage = _baseDamage * multiplier;
+    }
+
+    public void ApplyAttackSpeedMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f)
+            multiplier = 1f;
+
+        _attackInterval = _baseAttackInterval / multiplier;
     }
 
     private void Update()
