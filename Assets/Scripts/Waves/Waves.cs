@@ -1,9 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
     [Header("Баланс")]
     [SerializeField] private WaveBalance _waveBalance = new();
+
+    [Header("Прогрессия")]
+    [SerializeField] private WaveEnemyProgression _progression = new();
 
     [Header("Арена")]
     [SerializeField] private ArenaSettings _arenaSettings = new();
@@ -29,6 +33,7 @@ public class Waves : MonoBehaviour
     private int _enemiesToSpawn;
     private float _lastSpawnTime;
     private float _pauseStartedAt;
+    private EnemyWaveScale _currentScale;
 
     public int CurrentWave => _currentWave;
 
@@ -48,6 +53,8 @@ public class Waves : MonoBehaviour
     public bool IsGameOver => _session.IsFinished;
 
     public bool IsVictory => _session.IsVictory;
+
+    public IReadOnlyList<Enemy> LivingEnemies => _tracker.Living;
 
     private void Awake()
     {
@@ -81,6 +88,7 @@ public class Waves : MonoBehaviour
     private void Start()
     {
         _currentWave = 1;
+        _currentScale = _progression.GetScale(_currentWave);
         _enemiesToSpawn = _rules.CountForWave(_currentWave);
         _phase = WavePhase.Spawning;
         _lastSpawnTime = Time.time - _waveBalance.SpawnInterval;
@@ -129,7 +137,7 @@ public class Waves : MonoBehaviour
         {
             if (Time.time >= _lastSpawnTime + _waveBalance.SpawnInterval)
             {
-                Enemy enemy = _spawner.SpawnRegular();
+                Enemy enemy = _spawner.SpawnRegular(_currentScale);
 
                 if (enemy == null)
                 {
@@ -153,7 +161,7 @@ public class Waves : MonoBehaviour
         if (_tracker.ActiveCount > 0)
             return;
 
-        if (_currentWave >= WaveRules.FinalWave)
+        if (_currentWave >= _progression.FinalWave)
         {
             SpawnBoss();
             return;
@@ -169,6 +177,7 @@ public class Waves : MonoBehaviour
             return;
 
         _currentWave++;
+        _currentScale = _progression.GetScale(_currentWave);
         _enemiesToSpawn = _rules.CountForWave(_currentWave);
         _phase = WavePhase.Spawning;
     }
@@ -177,7 +186,7 @@ public class Waves : MonoBehaviour
     {
         _phase = WavePhase.Boss;
 
-        Enemy boss = _spawner.SpawnBoss();
+        Enemy boss = _spawner.SpawnBoss(_progression.GetBossScale());
 
         if (boss == null)
         {
