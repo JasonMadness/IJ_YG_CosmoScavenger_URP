@@ -19,7 +19,7 @@ public sealed class WaveSpawner
         _ground = ground;
     }
 
-    public Enemy SpawnRegular()
+    public Enemy SpawnRegular(EnemyWaveScale scale)
     {
         if (_enemyFactory == null)
         {
@@ -27,7 +27,7 @@ public sealed class WaveSpawner
             return null;
         }
 
-        Enemy enemy = _enemyFactory.Create();
+        Enemy enemy = _enemyFactory.Create(scale);
 
         if (enemy == null)
             return null;
@@ -37,7 +37,7 @@ public sealed class WaveSpawner
         return enemy;
     }
 
-    public Enemy SpawnBoss()
+    public Enemy SpawnBoss(EnemyWaveScale scale)
     {
         if (_bossPrefab == null)
         {
@@ -63,7 +63,7 @@ public sealed class WaveSpawner
             return null;
         }
 
-        boss.Initialize(_player, null);
+        boss.Initialize(_player, null, scale);
         boss.Spawn(GetGroundedPosition(boss, spawnPoint));
 
         return boss;
