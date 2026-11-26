@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private float _maxHealth;
 
+    private float _baseMaxHealth;
     private float _currentHealth;
     private float _damageResistance;
     private bool _isDead;
@@ -21,7 +22,16 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        _baseMaxHealth = _maxHealth;
         _currentHealth = _maxHealth;
+    }
+
+    public void ApplyMaxHealthMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f)
+            multiplier = 1f;
+
+        _maxHealth = _baseMaxHealth * multiplier;
     }
 
     public void TakeDamage(float damage)
